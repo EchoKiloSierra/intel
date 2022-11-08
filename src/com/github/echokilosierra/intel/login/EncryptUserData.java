@@ -16,9 +16,8 @@ import javax.crypto.NoSuchPaddingException;
 abstract class EncryptUserData 
 {
 
-    private transient static KeyPairGenerator keyPairGen;
-    private transient static KeyPair pair;
-
+    private static transient KeyPairGenerator keyPairGen;
+    private static transient KeyPair pair;
 
     //Generates KeyPair to be accessed by the Encryption/Decryption Process
     private final void genKey() throws NoSuchAlgorithmException
@@ -52,27 +51,31 @@ abstract class EncryptUserData
         }
     }
 
-
+    private static transient Cipher cipher;
+    private static transient byte[] cipherText;
+    private static transient byte[] decipheredText;
+    private static transient PublicKey  publicKey;
+    private static transient PrivateKey privateKey;
     //Encryption/Decryption Process using RSA Encryption on the byte[]
     private final byte[] processEncryption(boolean encrypt, byte[] input) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException
     {
         if(encrypt == true){
             genKey();
         }
-        final PublicKey  publicKey  = pair.getPublic();
-        final PrivateKey privateKey = pair.getPrivate();
+        publicKey  = pair.getPublic();
+        privateKey = pair.getPrivate();
         if(encrypt == true) {
-            final Cipher cipher     = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+            cipher     = Cipher.getInstance("RSA/ECB/PKCS1Padding");
             cipher.init(Cipher.ENCRYPT_MODE, publicKey);
             cipher.update(input);
-            final byte[] cipherText = cipher.doFinal();
+            cipherText = cipher.doFinal();
             return cipherText;
         }
         else if (encrypt == false) {
-            final Cipher cipher         = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+            cipher         = Cipher.getInstance("RSA/ECB/PKCS1Padding");
             cipher.init(Cipher.DECRYPT_MODE, privateKey);
             cipher.update(input);
-            final byte[] decipheredText = cipher.doFinal();
+            decipheredText = cipher.doFinal();
             return decipheredText;
         } else {
                 return null;

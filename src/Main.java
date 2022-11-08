@@ -1,6 +1,6 @@
 import com.github.echokilosierra.intel.login.LoginDialog;
 
-public class Main
+public class Main extends LoginDialog
 {
     private static transient final LoginDialog lgin = new LoginDialog();
 

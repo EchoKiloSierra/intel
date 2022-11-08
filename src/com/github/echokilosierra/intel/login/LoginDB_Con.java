@@ -1,7 +1,7 @@
 package com.github.echokilosierra.intel.login;
 
 
- class LoginDB_Con extends EncryptUserData
+class LoginDB_Con extends EncryptUserData
 {
     private static transient String password = "";
 

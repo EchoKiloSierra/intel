@@ -51,7 +51,7 @@ public class LoginDialog extends EncryptUserData
     private static transient final JPasswordField pw = new JPasswordField();             // PASSWORD Input Field (Ommits Characters as they are typed)
     private static transient final JTextField[] loginFields = {un_ID, pw_ID, un};
 
-    private static final JButton login_btn = new JButton("Login");
+    private static transient final JButton login_btn = new JButton("Login");
 
     private final void addDialogElements() /* Adds *ALL* graphical elements to the JDialog */
     {
@@ -110,9 +110,11 @@ public class LoginDialog extends EncryptUserData
         return un.getText();
     }
 
+    private static transient byte[] pwCont;
+
     protected final byte[] getPassword() 
     {
-                byte[] pwCont = encrypt((String.valueOf(pw.getPassword())).getBytes(StandardCharsets.UTF_8));
+                pwCont = encrypt((String.valueOf(pw.getPassword())).getBytes(StandardCharsets.UTF_8));
                 return pwCont;
     }
 
