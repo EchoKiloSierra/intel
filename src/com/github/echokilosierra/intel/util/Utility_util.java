@@ -6,19 +6,19 @@ import java.awt.Toolkit;
 public class Utility_util 
 {
     
-    private final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    private transient final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
-    public Dimension getScrnSize()
+    public final Dimension getScrnSize()
     {
         return screenSize;
     }
 
-    public int getLoginPopupHeight()
+    public final int getLoginPopupHeight()
     {
          return (int)screenSize.getHeight() / 5;
     }
 
-    public int getLoginPopupWidth()
+    public final int getLoginPopupWidth()
     {
         return (int)screenSize.getWidth() / 5;
     }

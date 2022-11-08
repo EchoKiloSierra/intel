@@ -1,13 +1,15 @@
 package com.github.echokilosierra.intel.login;
 
 
-public class LoginDB_Con extends EncryptUserData
+ class LoginDB_Con extends EncryptUserData
 {
+    private static transient String password = "";
+
     protected final boolean requestVerify(String user, byte[] pswd)
     {
-            String password = new String(decrypt(pswd));
+            password = new String(decrypt(pswd));
             if(user.equals("USER") && password.equals("ROOT")){
-                
+                password = null;
                 return true;
             } else {
                 return false;

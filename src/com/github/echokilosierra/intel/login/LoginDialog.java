@@ -15,18 +15,18 @@ import com.github.echokilosierra.intel.util.Utility_util;
 public class LoginDialog extends EncryptUserData
 {
 
-    private static final ProcessLgn login = new ProcessLgn();
+    private static transient final ProcessLgn login = new ProcessLgn();
 
-    private static final JDialog login_d = new JDialog();
+    private static transient final JDialog login_d = new JDialog();
 
-    private static final Utility_util util = new Utility_util();
+    private static transient final Utility_util util = new Utility_util();
 
-    public void callLoginFramework() 
+    public final void callLoginFramework() 
     {
         this.config();
     }
 
-    private void config()  /* Configuration for the login dialog Field */
+    private final void config()  /* Configuration for the login dialog Field */
     {
         login_d.addWindowListener(new WindowAdapter() { 
             public void windowClosing(WindowEvent e) { 
@@ -47,13 +47,13 @@ public class LoginDialog extends EncryptUserData
     Font font = new Font("Courier", Font. BOLD,12);
     private static final JTextField un_ID = new JTextField("Username:");  // USERNAME Identifier Text Field
     private static final JTextField pw_ID = new JTextField("Password:");  // PASSWORD Identifier Text Field
-    private static final JTextField un = new JTextField();                     // USERNAME Input Field
-    private static final JPasswordField pw = new JPasswordField();             // PASSWORD Input Field (Ommits Characters as they are typed)
-    private static final JTextField[] loginFields = {un_ID, pw_ID, un};
+    private static transient final JTextField un = new JTextField();                     // USERNAME Input Field
+    private static transient final JPasswordField pw = new JPasswordField();             // PASSWORD Input Field (Ommits Characters as they are typed)
+    private static transient final JTextField[] loginFields = {un_ID, pw_ID, un};
 
     private static final JButton login_btn = new JButton("Login");
 
-    private void addDialogElements() /* Adds *ALL* graphical elements to the JDialog */
+    private final void addDialogElements() /* Adds *ALL* graphical elements to the JDialog */
     {
         for(int i = 0; i < 3; i++) {
             login_d.add(loginFields[i]);
@@ -62,7 +62,7 @@ public class LoginDialog extends EncryptUserData
         login_d.add(login_btn);
     }
 
-    private void confDialogElements() /* Configures graphical elements in size, location and functionality */
+    private final void confDialogElements() /* Configures graphical elements in size, location and functionality */
     {
         un_ID.setLocation(login_d.getWidth() / 10, login_d.getHeight() / 5);
         un_ID.setSize(login_d.getWidth() / 4, login_d.getHeight() / 6);
