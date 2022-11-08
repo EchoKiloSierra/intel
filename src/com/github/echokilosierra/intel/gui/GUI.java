@@ -14,7 +14,6 @@ public class GUI extends JFrame
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(util.getScrnSize());
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        this.setVisible(true);    
+        this.setVisible(true);
     }    
-
 }

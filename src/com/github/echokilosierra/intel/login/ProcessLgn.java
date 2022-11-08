@@ -6,27 +6,16 @@ public class ProcessLgn
 {
     private static final Application_Main app = new Application_Main();
 
-    protected final void callLoginProcess(String username, String password)
+    private static final LoginDB_Con db = new LoginDB_Con();
+
+    protected final void callLoginProcess(String username, byte[] password)
     {
-     if(!verifyCredentials(username, password)){
-        
+     if(!db.requestVerify(username, password)){
+        LoginDialog.closeLogin();
      } else {   
         LoginDialog.closeLogin();
         app.run();
      }
-
-    }
-    
-    private final boolean verifyCredentials(String usn, String pswd)
-    {
-        //TODO: ADD Database connectivity
-
-        if(usn.equals("USER") && pswd.equals("ROOT")){
-            return true;
-        }
-        else {
-            return false;
-        }
     }
 
 }
